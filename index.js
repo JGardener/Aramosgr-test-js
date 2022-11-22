@@ -43,7 +43,17 @@ const printPlayerNamesLengthDescending = () => {
   for (let i = 0; i < data.getPlayers().length; i++) {
     playersArrayDescending.push(data.getPlayers()[i].name);
   }
-  return console.log(playersArrayDescending.sort());
+  return console.log(
+    playersArrayDescending.sort((a, b) => {
+      if (a.length < b.length) {
+        return 1;
+      }
+      if (a.length > b.length) {
+        return -1;
+      }
+      return 0;
+    })
+  );
 };
 
 printPlayerNamesLengthDescending();
