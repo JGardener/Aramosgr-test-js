@@ -64,7 +64,7 @@ interface ITest2ComponentProps {
 export const Test2Component = (props: ITest2ComponentProps) => {
   const [age, updateAge] = useState<number>(0);
   useEffect(() => {
-    getAge(props.name).then((response) => console.log(response));
+    getAge(props.name).then((response) => updateAge(response));
   }, [props.name]);
 
   return <div style={{ color: age >= 18 ? "blue" : "red" }}>{props.name}</div>;
