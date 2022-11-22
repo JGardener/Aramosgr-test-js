@@ -65,22 +65,9 @@ const averageGoals = () => {
   console.log(
     data
       .getPlayers()
-      .map((element) => {
-        return element.scoringChance / 100;
-      })
-      .reduce((a, b) => a + b, 0)
+      .reduce((a, b) => a + b.scoringChance / 100, 0)
+      .toFixed(2)
   );
-
-  // data.getPlayers().forEach((element) => {
-  //   scoringChanceArray.push(element.scoringChance / 100);
-  // });
-  // console.log(scoringChanceArray);
-  // console.log(
-  //   "Goals per match: ",
-  //   Math.round(
-  //     scoringChanceArray.reduce((a, b) => a + b, 0 / scoringChanceArray.length)
-  //   )
-  // );
 };
 
 averageGoals();
