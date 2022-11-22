@@ -11,9 +11,22 @@ const data = require("./data");
  * PLAYER 2...
  */
 
- // Your code
+// Your code
 
+const displayPlayers = () => {
+  console.log("----------");
+  console.log("Test 1: ");
+  data.getPlayers().forEach((player, index) => {
+    console.log({
+      PLAYER: index,
+      NAME: player.name,
+      LASTNAME: player.lastname,
+      POSITION: player.position,
+    });
+  });
+};
 
+displayPlayers();
 
 /**
  * Test 2
@@ -22,21 +35,55 @@ const data = require("./data");
 
 // Your code
 
+let playersArrayDescending = [];
 
+const printPlayerNamesLengthDescending = () => {
+  console.log("----------");
+  console.log("Test 2: ");
+  for (let i = 0; i < data.getPlayers().length; i++) {
+    playersArrayDescending.push(data.getPlayers()[i].name);
+  }
+  return console.log(playersArrayDescending.sort());
+};
 
-
+printPlayerNamesLengthDescending();
 
 /**
  * Test 3
  * Write a function to log in the console the average number of goals there will be in a match if all the players in the data play on it
  * scoringChance means how many goals per 100 matches the player will score
- * Example: 10 players play in a match, each of them has a 0.11 scoringChance, the total number of goals will be 1.1 average 
+ * Example: 10 players play in a match, each of them has a 0.11 scoringChance, the total number of goals will be 1.1 average
  * Output example -> Goals per match: 2.19
  */
 
 // Your code
 
+const averageGoals = () => {
+  console.log("----------");
+  console.log("Test 3: ");
 
+  console.log(
+    data
+      .getPlayers()
+      .map((element) => {
+        return element.scoringChance / 100;
+      })
+      .reduce((a, b) => a + b, 0)
+  );
+
+  // data.getPlayers().forEach((element) => {
+  //   scoringChanceArray.push(element.scoringChance / 100);
+  // });
+  // console.log(scoringChanceArray);
+  // console.log(
+  //   "Goals per match: ",
+  //   Math.round(
+  //     scoringChanceArray.reduce((a, b) => a + b, 0 / scoringChanceArray.length)
+  //   )
+  // );
+};
+
+averageGoals();
 
 /**
  * Test 4
@@ -45,15 +92,53 @@ const data = require("./data");
 
 // Your code
 
+const printPlayerPosition = (player) => {
+  console.log("----------");
+  console.log("Test 4: ");
+  for (let i = 0; i < data.getPlayers().length; i++) {
+    if (data.getPlayers()[i].name === player) {
+      return console.log(data.getPlayers()[i].position);
+    }
+  }
+};
 
+printPlayerPosition("Florin");
 
 /**
  * Test 5
  * Write a function that splits all the players randomly into 2 teams, Team A and Team B. Both teams should have same number of players.
  * The function should log the match score, using the average number of goals like the Test 3 and rounding to the closest integer
  * Example:
- *      Team A has 4 players, 2 with 50 scoringChance and 2 with 70 scoringChance. 
+ *      Team A has 4 players, 2 with 50 scoringChance and 2 with 70 scoringChance.
  *      The average score for the team would be 2.4 (50+50+70+70 / 100), and the closest integer is 2, so the Team A score is 2
  */
 
 // Your code
+
+const logMatchScore = () => {
+  console.log("----------");
+  console.log("Test 5: ");
+
+  let shuffledArray = data.getPlayers().sort(() => Math.random() - 0.5);
+  let teamA = shuffledArray.slice(0, shuffledArray.length / 2);
+  let teamB = shuffledArray.slice(
+    shuffledArray.length / 2,
+    shuffledArray.length
+  );
+
+  let teamAScoreChance = 0;
+  let teamBScoreChance = 0;
+
+  for (let i = 0; i < teamA.length; i++) {
+    teamAScoreChance += parseFloat(teamA[i].scoringChance);
+  }
+  for (let i = 0; i < teamB.length; i++) {
+    teamBScoreChance += parseFloat(teamB[i].scoringChance);
+  }
+
+  console.log("The score is: ");
+  console.log("Team A: ", Math.round(teamAScoreChance / 100));
+  console.log("Team B: ", Math.round(teamBScoreChance / 100));
+};
+
+logMatchScore();
