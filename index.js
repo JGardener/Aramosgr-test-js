@@ -16,13 +16,13 @@ const data = require("./data");
 const displayPlayers = () => {
   console.log("----------");
   console.log("Test 1: ");
+
   data.getPlayers().forEach((player, index) => {
-    console.log({
-      PLAYER: index,
-      NAME: player.name,
-      LASTNAME: player.lastname,
-      POSITION: player.position,
-    });
+    console.log("PLAYER: ", index + 1);
+    console.log("NAME: ", player.name);
+    console.log("LASTNAME: ", player.lastname);
+    console.log("POSITION: ", player.position);
+    console.log("--------");
   });
 };
 
@@ -82,11 +82,9 @@ averageGoals();
 const printPlayerPosition = (player) => {
   console.log("----------");
   console.log("Test 4: ");
-  for (let i = 0; i < data.getPlayers().length; i++) {
-    if (data.getPlayers()[i].name === player) {
-      return console.log(data.getPlayers()[i].position);
-    }
-  }
+
+  let person = data.getPlayers().find((element) => element.name === player);
+  console.log(person?.position);
 };
 
 printPlayerPosition("Florin");
