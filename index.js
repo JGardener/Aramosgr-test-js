@@ -35,16 +35,13 @@ displayPlayers();
 
 // Your code
 
-let playersArrayDescending = [];
-
 const printPlayerNamesLengthDescending = () => {
   console.log("----------");
   console.log("Test 2: ");
-  for (let i = 0; i < data.getPlayers().length; i++) {
-    playersArrayDescending.push(data.getPlayers()[i].name);
-  }
-  return console.log(
-    playersArrayDescending.sort((a, b) => {
+  let playerNames = data
+    .getPlayers()
+    .map((element) => element.name)
+    .sort((a, b) => {
       if (a.length < b.length) {
         return 1;
       }
@@ -52,8 +49,8 @@ const printPlayerNamesLengthDescending = () => {
         return -1;
       }
       return 0;
-    })
-  );
+    });
+  console.log(playerNames);
 };
 
 printPlayerNamesLengthDescending();
