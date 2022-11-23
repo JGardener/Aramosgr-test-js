@@ -118,15 +118,16 @@ const logMatchScore = () => {
     shuffledArray.length
   );
 
-  let teamAScoreChance = 0;
-  let teamBScoreChance = 0;
+  const calculatTeamScoreChance = (array) => {
+    let scoreChance = 0;
+    for (let i = 0; i < array.length; i++) {
+      scoreChance += parseFloat(array[i].scoringChance);
+    }
+    return scoreChance;
+  };
 
-  for (let i = 0; i < teamA.length; i++) {
-    teamAScoreChance += parseFloat(teamA[i].scoringChance);
-  }
-  for (let i = 0; i < teamB.length; i++) {
-    teamBScoreChance += parseFloat(teamB[i].scoringChance);
-  }
+  let teamAScoreChance = calculatTeamScoreChance(teamA);
+  let teamBScoreChance = calculatTeamScoreChance(teamB);
 
   console.log("The score is: ");
   console.log("Team A: ", Math.round(teamAScoreChance / 100));
